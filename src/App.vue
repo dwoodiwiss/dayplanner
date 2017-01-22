@@ -24,7 +24,10 @@
       </tbody>
     </table>
     <section class="timeline">
-      <div v-for="hours in times.hoursArray" class="timeline__hour"></div>
+      <div v-for="hours in times.hoursArray">
+        <div v-if="hours == true" class="timeline__hour timeline__hour--spent"></div>
+        <div v-else class="timeline__hour timeline__hour--left"></div>
+      </div>
     </section>
   </div>
 </template>
@@ -49,8 +52,14 @@ hoursSpentInDay = Math.abs(hoursSpentInDay);
 let hoursArray = [];
 
 for (var i = 0; i < hoursSpentInDay; i++) {
-  hoursArray.push(i+1);
+  hoursArray.push(true);
 }
+
+for (var i = 0; i < hoursLeftInDay; i++) {
+  hoursArray.push(false);
+}
+
+console.log(hoursArray);
 
 const times = {
   start,
@@ -130,17 +139,23 @@ td {
 
 .timeline {
   margin-top: 50px;
-  background-color: #3473d6;
+  background-color: #ccc;
   width: 800px;
   height: 10px;
 }
 
 .timeline__hour {
+  &--spent {
+    background-color: #e74430;
+  }
+
+  &--left {
+    background-color: #3473d6;
+  }
+
   width: 100px;
-  background-color: #e74430;
   height: 10px;
   float: left;
-  border-right: 1px solid #2c2c2c;
 }
 
 </style>
