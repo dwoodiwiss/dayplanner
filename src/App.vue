@@ -35,8 +35,10 @@
 <script>
 import dateFns from 'date-fns'
 
-let start = dateFns.subHours(new Date(), 5);
-let end = dateFns.addHours(new Date(), 3);
+let start = dateFns.startOfToday();
+start = dateFns.addHours(start, 8);
+
+let end = dateFns.addHours(start, 15);
 let current = new Date();
 let hoursInDay = dateFns.differenceInHours(start, end);
 let hoursLeftInDay = dateFns.differenceInHours(current, end);
@@ -140,20 +142,26 @@ td {
 .timeline {
   margin-top: 50px;
   background-color: #ccc;
-  width: 800px;
+  width: 100%;
   height: 10px;
+  display: flex;
+
+  div {
+    flex: 1;
+  }
 }
 
 .timeline__hour {
   &--spent {
     background-color: #e74430;
+    width: 100%;
   }
 
   &--left {
     background-color: #3473d6;
+    width: 100%;
   }
 
-  width: 100px;
   height: 10px;
   float: left;
 }
