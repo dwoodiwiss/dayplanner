@@ -14,8 +14,8 @@
       </thead>
       <tbody>
         <tr>
-          <td>{{ times.start }}</td>
-          <td>{{ times.end }}</td>
+          <td><input type="time" name="start" v-model="times.start"></td>
+          <td><input type="time" name="end" v-model="times.end"></td>
           <td>{{ times.current }}</td>
           <td>{{ times.hoursInDay }}</td>
           <td>{{ times.hoursLeftInDay }}</td>
@@ -60,8 +60,6 @@ for (var i = 0; i < hoursSpentInDay; i++) {
 for (var i = 0; i < hoursLeftInDay; i++) {
   hoursArray.push(false);
 }
-
-console.log(hoursArray);
 
 const times = {
   start,
@@ -115,7 +113,7 @@ h1 {
 
 %bodyFont {
   font-weight: $body-font-weight;
-  margin-bottom: 50px;
+  font-size: 16px;
 }
 
 %headingFont {
@@ -137,6 +135,18 @@ td {
   @extend %bodyFont;
   width: 16%;
   text-align: left;
+}
+
+input {
+
+  background-color: #2c2c2c;
+  border: 0;
+  color: #fff;
+  width: 80px;
+  border-bottom: 2px solid white;
+  font-family: "HelveticaNeue"!important;
+  font-size: 16px;
+  line-height: 1;
 }
 
 .timeline {
