@@ -1,39 +1,15 @@
 <template>
-  <div id="app">
-    <h1>{{ title }}</h1>
-    <table>
-      <thead>
-        <tr>
-          <th>START</th>
-          <th>END</th>
-          <th>CURRENT</th>
-          <th>HOURS IN DAY</th>
-          <th>HOURS LEFT</th>
-          <th>HOURS SPENT</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td><input type="time" name="start" v-model="times.start"></td>
-          <td><input type="time" name="end" v-model="times.end"></td>
-          <td>{{ times.current }}</td>
-          <td>{{ times.hoursInDay }}</td>
-          <td>{{ times.hoursLeftInDay }}</td>
-          <td>{{ times.hoursSpentInDay }}</td>
-        </tr>
-      </tbody>
-    </table>
-    <section class="timeline">
-      <div v-for="hours in times.hoursArray">
-        <div v-if="hours == true" class="timeline__hour timeline__hour--spent"></div>
-        <div v-else class="timeline__hour timeline__hour--left"></div>
-      </div>
-    </section>
-  </div>
+  <section class="topbar">
+    <div>
+      <h1>{{ title }}</h1>
+    </div>
+  </section>
 </template>
 
 <script>
+
 import dateFns from 'date-fns'
+import Credits from './components/Credits.vue'
 
 let start = dateFns.startOfToday();
 start = dateFns.addHours(start, 8);
@@ -79,7 +55,7 @@ export default {
   name: 'app',
   data () {
     return {
-      title: 'Welcome to DayPlanner',
+      title: 'DayPlanner',
       times,
     }
   }
@@ -87,93 +63,24 @@ export default {
 </script>
 
 <style lang="scss">
+  $primary-color: #5596E6;
 
-$primary-color: #2c2c2c;
-$white: #fff;
-$primary-font: "HelveticaNeue";
-$body-font-weight: 100;
-$header-font-weight: 600;
+  .topbar {
+    height: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
-#app {
-  width: 100%;
-}
+    background-color: $primary-color;
+    color: #fff;
 
-body {
-  background-color: $primary-color;
-  color: $white;
-  display: flex;
-  // justify-content: center;
-  font-family: $primary-font;
-}
+    div {
+      display: flex;
+      align-items: center;
 
-h1 {
-  font-size: 28px;
-  @extend %headingFont;
-}
-
-%bodyFont {
-  font-weight: $body-font-weight;
-  font-size: 16px;
-}
-
-%headingFont {
-  font-weight: $header-font-weight;
-  margin-bottom: 50px;
-}
-
-table {
-  width: 100%;
-}
-
-th {
-  @extend %headingFont;
-  width: 16%;
-  text-align: left;
-}
-
-td {
-  @extend %bodyFont;
-  width: 16%;
-  text-align: left;
-}
-
-input {
-
-  background-color: #2c2c2c;
-  border: 0;
-  color: #fff;
-  width: 80px;
-  border-bottom: 2px solid white;
-  font-family: "HelveticaNeue"!important;
-  font-size: 16px;
-  line-height: 1;
-}
-
-.timeline {
-  margin-top: 50px;
-  background-color: #ccc;
-  width: 100%;
-  height: 10px;
-  display: flex;
-
-  div {
-    flex: 1;
+      height: 100%;
+      width: 1000px;
+    }
   }
-}
-
-.timeline__hour {
-  &--spent {
-    background-color: #e74430;
-    width: 100%;
-  }
-
-  &--left {
-    background-color: #3473d6;
-    width: 100%;
-  }
-
-  height: 10px;
-  float: left;
-}
 
 </style>
